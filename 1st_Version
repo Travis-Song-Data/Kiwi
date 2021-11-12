@@ -1,0 +1,58 @@
+import speech_recognition as sr
+import pyttsx3
+from datetime import date 
+import time
+
+
+def command():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Kiwi: Listening...")
+        audio=r.listen(source)
+        try:    
+            query = r.recognize_google(audio)
+            print(f"master:{query}")
+            
+            if query == "how are you":
+                reply = "I am great, thank you. How are you?"
+
+            elif query == "who is the most beautiful person in the world":
+                reply = "The most beautiful person in the world is Betty"
+
+            elif query == "who is the most boring person in the world":
+                reply = "the most boring person in the world is Travis" 
+
+            elif query == "what is the date today":
+                today = date.today()
+                d2 = today.strftime("%B %d, %Y")
+                reply = (f"It is {d2}")
+
+            elif query == "what is the time now" or query == "what's the time now":
+                t = time.localtime()
+                current_time = time.strftime("%I:%M:%S", t)
+                reply = (f"It is {current_time}")
+
+##            elif query == "what is the weather like":
+##                weather = requests.get("api.openweathermap.org/data/2.5/weather?q=London,uk&appid=4b19f6c8b8fc834e6302319e13130acc")
+##                reply = weather(2)
+##                print(weather(2))
+
+
+            else:
+                reply = query
+
+            return reply
+        except:
+            print("Try Again")
+            
+## print(command())  ## uncomment this to test the function  ### Run the code and speak anything and it will printed on the screen
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[0].id)
+
+def speak(audio):
+    engine.say(audio)   
+    engine.runAndWait()
+
+speak(command())  ## uncomment this to test the function
