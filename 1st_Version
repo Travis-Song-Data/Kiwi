@@ -2,6 +2,7 @@ import speech_recognition as sr
 import pyttsx3
 from datetime import date 
 import time
+import webbrowser
 
 
 def command():
@@ -25,6 +26,14 @@ def command():
 
             elif query == "tell me a joke":
                 reply = "I told my girlfriend she drew her eyebrows too high. She seemed surprised"
+
+            elif query == "open YouTube":
+                webbrowser.open_new_tab("https://www.youtube.com")
+                speak("youtube is open now")
+
+            elif query == "open canvas":
+                webbrowser.open_new_tab("https://byui.instructure.com")
+                speak("Canvas is now open")
 
             elif query == "what is the date today":
                 today = date.today()
