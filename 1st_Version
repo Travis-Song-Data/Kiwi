@@ -22,6 +22,9 @@ def command():
             elif query == "who is the most boring person in the world":
                 reply = "the most boring person in the world is Travis" 
 
+            elif query == "tell me a joke":
+                reply = "I told my girlfriend she drew her eyebrows too high. She seemed surprised"
+
             elif query == "what is the date today":
                 today = date.today()
                 d2 = today.strftime("%B %d, %Y")
